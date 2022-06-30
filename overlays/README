@@ -582,6 +582,21 @@ Load:   dtoverlay=applepi-dac
 Params: <None>
 
 
+Name:   arducam-64mp
+Info:   Arducam 64MP camera module.
+        Uses Unicam 1, which is the standard camera connector on most Pi
+        variants.
+Load:   dtoverlay=arducam-64mp,<param>=<val>
+Params: rotation                Mounting rotation of the camera sensor (0 or
+                                180, default 0)
+        orientation             Sensor orientation (0 = front, 1 = rear,
+                                2 = external, default external)
+        media-controller        Configure use of Media Controller API for
+                                configuring the sensor (default on)
+        cam0                    Adopt the default configuration for CAM0 on a
+                                Compute Module (CSI0, i2c_vc, and cam0_reg).
+
+
 Name:   arducam-pivariety
 Info:   Arducam Pivariety camera module.
         Uses Unicam 1, which is the standard camera connector on most Pi
@@ -1654,6 +1669,8 @@ Params: abx80x                  Select one of the ABx80x family:
 
         rv3028                  Select the Micro Crystal RV3028 device
 
+        rv8803                  Select the Micro Crystal RV8803 device
+
         sd3078                  Select the ZXW Shenzhen whwave SD3078 device
 
         s35390a                 Select the ABLIC S35390A device
@@ -1723,6 +1740,8 @@ Params: abx80x                  Select one of the ABx80x family:
         rv1805                  Select the Micro Crystal RV1805 device
 
         rv3028                  Select the Micro Crystal RV3028 device
+
+        rv8803                  Select the Micro Crystal RV8803 device
 
         sd3078                  Select the ZXW Shenzhen whwave SD3078 device
 
@@ -1973,6 +1992,21 @@ Params: 4lane                   Enable 4 CSI2 lanes. This requires a Compute
                                 2 = external, default external)
         rotation                Mounting rotation of the camera sensor (0 or
                                 180, default 0)
+        media-controller        Configure use of Media Controller API for
+                                configuring the sensor (default on)
+        cam0                    Adopt the default configuration for CAM0 on a
+                                Compute Module (CSI0, i2c_vc, and cam0_reg).
+
+
+Name:   imx296
+Info:   Sony IMX296 camera module.
+        Uses Unicam 1, which is the standard camera connector on most Pi
+        variants.
+Load:   dtoverlay=imx296,<param>=<val>
+Params: rotation                Mounting rotation of the camera sensor (0 or
+                                180, default 180)
+        orientation             Sensor orientation (0 = front, 1 = rear,
+                                2 = external, default external)
         media-controller        Configure use of Media Controller API for
                                 configuring the sensor (default on)
         cam0                    Adopt the default configuration for CAM0 on a
@@ -2948,6 +2982,35 @@ Params: baudrate                Set the baudrate for the UART (default
                                 "115200")
 
 
+Name:   ramoops
+Info:   Enable the preservation of crash logs across a reboot. With
+        systemd-pstore enabled (as it is on Raspberry Pi OS) the crash logs
+        are moved to /var/lib/systemd/pstore/ on reboot.
+Load:   dtoverlay=ramoops,<param>=<val>
+Params: base-addr               Where to place the capture buffer (default
+                                0x0b000000)
+        total-size              How much memory to allocate altogether (in
+                                bytes - default 64kB)
+        record-size             How much space to use for each capture, i.e.
+                                total-size / record-size = number of captures
+                                (default 16kB)
+        console-size            Size of non-panic dmesg captures (default 0)
+
+
+Name:   ramoops-pi4
+Info:   The version of the ramoops overlay for the Pi 4 family. It should be
+        loaded automatically if dtoverlay=ramoops is specified on a Pi 4.
+Load:   dtoverlay=ramoops-pi4,<param>=<val>
+Params: base-addr               Where to place the capture buffer (default
+                                0x0b000000)
+        total-size              How much memory to allocate altogether (in
+                                bytes - default 64kB)
+        record-size             How much space to use for each capture, i.e.
+                                total-size / record-size = number of captures
+                                (default 16kB)
+        console-size            Size of non-panic dmesg captures (default 0)
+
+
 Name:   rotary-encoder
 Info:   Overlay for GPIO connected rotary encoder.
 Load:   dtoverlay=rotary-encoder,<param>=<val>
@@ -3107,10 +3170,9 @@ Params: <None>
 
 
 Name:   rpivid-v4l2
-Info:   Load the V4L2 stateless video decoder driver for the HEVC block,
-        disabling the memory mapped devices in the process.
-Load:   dtoverlay=rpivid-v4l2
-Params: <None>
+Info:   This overlay has been deprecated and deleted as the V4L2 stateless
+        video decoder driver is enabled by default.
+Load:   <Deprecated>
 
 
 Name:   rra-digidac1-wm8741-audio
