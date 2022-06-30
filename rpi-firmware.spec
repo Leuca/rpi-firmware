@@ -1,6 +1,6 @@
 %define debug_package %{nil}
 Name:           rpi-firmware
-Version:        {{{ get_dummy_version }}}
+Version:        5.15.41
 Release:        0%{?dist}
 Summary:        Firmware for older Raspberry Pi
 
