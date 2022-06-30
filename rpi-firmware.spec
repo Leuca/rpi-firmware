@@ -21,7 +21,7 @@ Summary:        Firmware for Raspberry Pi 4
 Firmware files needed to boot the Raspberry Pi 4
 
 %prep
-%setup -q
+%setup -q -n rpi-firmware-copr
 
 %install
 mkdir -p %{buildroot}/boot/efi
