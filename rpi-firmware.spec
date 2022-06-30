@@ -1,31 +1,23 @@
 %define debug_package %{nil}
-Name:           {{{ git_dir_name }}}
-Version:        {{{ git_dir_version }}}
-Release:        1%{?dist}
-Summary:        Firmware files for the Raspberry Pi
+Name:           rpi-firmware
+Version:        {{{ get_dummy_version }}}
+Release:        0%{?dist}
+Summary:        Firmware for older Raspberry Pi
 
 License:        custom
 URL:            https://github.com/raspberrypi/rpi-firmware
 
-VCS:            {{{ git_dir_vcs }}}
-
-Source:         https://github.com/raspberrypi/rpi-firmware/archive/refs/heads/master.zip
+Source:         https://github.com/Leuca/rpi-firmware/archive/refs/heads/copr.zip
 
 ExclusiveArch:  %{arm} aarch64
 
 %description
-Empty package for firmware files for the Raspberry Pi.
-
-%package        rpi
-Summary:        Firmware for older Raspberry Pi
-
-%description    rpi
 Firmware files needed to boot older versions of the Raspberry Pi
 
-%package        rpi4
+%package        -n rpi4-firmware
 Summary:        Firmware for Raspberry Pi 4
 
-%description    rpi4
+%description    -n rpi4-firmware
 Firmware files needed to boot the Raspberry Pi 4
 
 %prep
@@ -51,10 +43,7 @@ install -m 700 start_cd.elf %{buildroot}/boot/efi
 install -m 700 start_db.elf %{buildroot}/boot/efi
 install -m 700 start_x.elf %{buildroot}/boot/efi
 
-# Empty package
 %files
-
-%files rpi
 %license LICENCE.broadcom
 /boot/efi/bootcode.bin
 /boot/efi/fixup.dat
@@ -66,7 +55,7 @@ install -m 700 start_x.elf %{buildroot}/boot/efi
 /boot/efi/start_db.elf
 /boot/efi/start_x.elf
 
-%files rpi4
+%files -n rpi4-firmware
 %license LICENCE.broadcom
 /boot/efi/fixup4.dat
 /boot/efi/fixup4cd.dat
@@ -78,4 +67,5 @@ install -m 700 start_x.elf %{buildroot}/boot/efi
 /boot/efi/start4x.elf
 
 %changelog
-{{{ git_dir_changelog }}}
+* Thu Jun 30 2022 Luca Magrone <luca.magrone@me.com>
+- Initial package release
