@@ -7,7 +7,7 @@
 
 Name:           rpi-firmware
 Version:        0
-Release:        %{?gitrel}%{?dist}
+Release:        1%{?gitrel}%{?dist}
 Summary:        Firmware for older Raspberry Pi
 
 License:        custom
