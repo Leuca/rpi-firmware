@@ -1,13 +1,19 @@
 %define debug_package %{nil}
+
+%global commit 516eaa0627854aa073859d4041c49eef786c2e27
+%global shortcommit %(c=%{commit}; echo ${c:0:7})
+%global commit_date 20221014
+%global gitrel .%{commit_date}.git%{shortcommit}
+
 Name:           rpi-firmware
-Version:        5.15.41
-Release:        0%{?dist}
+Version:        0
+Release:        %{?gitrel}%{?dist}
 Summary:        Firmware for older Raspberry Pi
 
 License:        custom
 URL:            https://github.com/raspberrypi/rpi-firmware
 
-Source:         https://github.com/Leuca/rpi-firmware/archive/refs/heads/copr.zip
+Source:         https://github.com/Leuca/rpi-firmware/archive/%{commit}/copr.zip
 
 ExclusiveArch:  %{arm} aarch64
 
@@ -21,7 +27,7 @@ Summary:        Firmware for Raspberry Pi 4
 Firmware files needed to boot the Raspberry Pi 4
 
 %prep
-%setup -q -n rpi-firmware-copr
+%setup -q -n rpi-firmware-%{commit}
 
 %install
 mkdir -p %{buildroot}/boot/efi
@@ -67,5 +73,9 @@ install -m 700 start_x.elf %{buildroot}/boot/efi
 /boot/efi/start4x.elf
 
 %changelog
-* Thu Jun 30 2022 Luca Magrone <luca.magrone@me.com>
+* Thu Jun 30 2022 Luca Magrone <luca@magrone.cc> - 0-1.20221014.git516eaa0
+- Change versioning scheme
+- Update to 516eaa0
+
+* Thu Jun 30 2022 Luca Magrone <luca@magrone.cc> - 5.15.41-0
 - Initial package release
