@@ -13,7 +13,7 @@ Summary:        Firmware for older Raspberry Pi
 License:        custom
 URL:            https://github.com/raspberrypi/rpi-firmware
 
-Source:         https://github.com/Leuca/rpi-firmware/archive/%{commit}/copr.zip
+Source:         https://github.com/raspberrypi/rpi-firmware/archive/%{commit}/copr.zip
 
 ExclusiveArch:  %{arm} aarch64
 
