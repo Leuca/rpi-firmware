@@ -74,7 +74,7 @@ Summary:        Device Tree binariy object overlays
 %description    -n rpi-dtbs-common
 Upstream Device Tree Binary Overlays for additional devices
 
-% prep
+%prep
 %setup -q -n rpi-firmware-%{commit}
 
 %install
