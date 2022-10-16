@@ -11,7 +11,6 @@ Name:           rpi-firmware
 Version:        0
 Release:        2%{?gitrel}%{?dist}
 Summary:        Firmware for legacy Raspberry Pi(s)
-BuildArch:      noarch
 
 License:        custom
 URL:            https://github.com/raspberrypi/rpi-firmware
